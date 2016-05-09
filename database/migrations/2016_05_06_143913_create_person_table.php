@@ -18,14 +18,16 @@ class CreatePersonTable extends Migration
             $table->string('sn1');
             $table->string('sn2');
             $table->string('email')->unique();
-            $table->string('official_id');
-            $table->string('date_of_birth');
-            $table->string('gender');
-            $table->string('address');
-            $table->string('locality_name');
+            $table->string('official_id')->unique();
             $table->string('mobile');
-            $table->string('photo');
             $table->timestamps();
+
+            $table->integer('user_id')->unsigned();
+
+        });
+
+        Schema::table('person', function ($table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
