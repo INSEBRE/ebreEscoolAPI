@@ -2,25 +2,24 @@
 
 namespace App\Http\Controllers;
 
-
-use App\User;
-use App\Transformers\UserTransformer;
+use App\People;
+use App\Transformers\PeopleTransformer;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Response;
 
-class UserController extends Controller
+class PeopleController extends Controller
 {
     protected $userTransformer;
 
     /**
-     * UserController constructor.
-     * @param $userTransformer
+     * PeopleController constructor.
+     * @param $peopleTransformer
      */
-    public function __construct(UserTransformer $userTransformer)
+    public function __construct(PeopleTransformer $peopleTransformer)
     {
-        $this->userTransformer = $userTransformer;
+        $this->peopleTransformer = $peopleTransformer;
     }
 
     /**
@@ -30,9 +29,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $user = User::all();
+        $people = People::all();
         return Response::json(
-            $this->userTransformer->transformCollection($user),
+            $this->peopleTransformer->transformCollection($people),
             200
         );
     }
@@ -55,10 +54,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //Creating New Users
-        $user = new User();
+        $people = new People();
 
-        $this->saveUser($request, $user);
+        $this->savePeople($request, $people);
     }
 
     /**
@@ -69,20 +67,19 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //Obtain the user data
-        $user = User::find($id);
+        $people = People::find($id);
 
-        if( !$user ) {
+        if( !$people ) {
             return Response::json([
                 'error' => [
-                    'message' => 'User does not exist',
+                    'message' => 'People does not exist',
                     'code' => 195
                 ]
             ],404);
         }
 
         return Response::json(
-            $this->userTransformer->transform($user),
+            $this->peopleTransformer->transform($people),
             200
         );
     }
@@ -107,19 +104,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Update a user
-        $user = User::find($id);
+        $people = People::find($id);
 
-        if( !$user ){
+        if( !$people ){
             return Response::json([
                 'error' => [
-                    'message' => 'User does not exist',
+                    'message' => 'People does not exist',
                     'code' => 195
                 ]
             ],404);
         }
 
-        $this->saveUser($request, $user);
+        $this->savePeople($request, $people);
     }
 
     /**
@@ -130,18 +126,26 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //Demove a user
-        User::destroy($id);
+        People::destroy($id);
     }
 
     /**
      * @param Request $request
-     * @param $user
+     * @param $people
      */
-    protected function saveUser(Request $request, $user) {
-        $user->username = $request->username;
-        $user->email = $request->email;
+    protected function savePeople(Request $request, $people) {
+        $people->givenName = $request->givenName;
+        $people->sn1 = $request->sn1;
+        $people->sn2 = $request->sn2;
+        $people->email = $request->email;
+        $people->secondary_email = $request->secondary_email;
+        $people->official_id = $request->official_id;
+        $people->date_of_birth = $request->date_of_birth;
+        $people->homePostalAddress = $request->homePostalAddress;
+        $people->locality_name = $request->locality_name;
+        $people->mobile = $request->mobile;
+        $people->photo = $request->photo;
 
-        $user->save();
+        $people->save();
     }
 }
