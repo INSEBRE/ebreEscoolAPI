@@ -12,4 +12,5 @@ abstract class Transformer
     }
 
     abstract public function transform($item);
+
 }

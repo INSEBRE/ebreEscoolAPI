@@ -69,7 +69,7 @@ class PeopleController extends Controller
     {
         $people = People::find($id);
 
-        if ( !$people ) {
+        if (!$people) {
             return Response::json([
                 'error' => [
                     'message' => 'People does not exist',
@@ -106,7 +106,7 @@ class PeopleController extends Controller
     {
         $people = People::find($id);
 
-        if ( !$people ){
+        if (!$people){
             return Response::json([
                 'error' => [
                     'message' => 'People does not exist',

@@ -67,7 +67,7 @@ class UserTest extends TestCase
     public function testUsersCanBeUpdatedAndSeeChangesInDatabase()
     {
         $user = $this->createFakeUser();
-        $data = [ 'username' => 'panqueque', 'email' => 'panqueque@iesebre.com'];
+        $data = ['username' => 'panqueque', 'email' => 'panqueque@iesebre.com'];
         $this->put('/user/' . $user->id, $data)->seeInDatabase('users', $data);
         $this->get('/user')->seeJsonContains($data)->seeStatusCode(200);
     }
@@ -80,7 +80,7 @@ class UserTest extends TestCase
     public function testUsersCanBeDeletedAndNotSeenOnDatabase()
     {
         $user = $this->createFakeUser();
-        $data = [ 'username' => $user->username, 'email' => $user->email];
+        $data = ['username' => $user->username, 'email' => $user->email];
         $this->delete('/user/' . $user->id)->notSeeInDatabase('users', $data);
         $this->get('/user')->dontSeeJson($data)->seeStatusCode(200);
     }
@@ -111,7 +111,7 @@ class UserTest extends TestCase
      */
     private function createFakeUsers($count = 10)
     {
-        foreach (range(0,$count) as $number) {
+        foreach (range(0, $count) as $number) {
             $this->createFakeUser();
         }
     }
@@ -127,5 +127,4 @@ class UserTest extends TestCase
         $user = factory(App\User::class)->create();
         return $user;
     }
-
 }

@@ -72,7 +72,7 @@ class UserController extends Controller
         //Obtain the user data
         $user = User::find($id);
 
-        if ( !$user ) {
+        if (!$user) {
             return Response::json([
                 'error' => [
                     'message' => 'User does not exist',
@@ -110,7 +110,7 @@ class UserController extends Controller
         //Update a user
         $user = User::find($id);
 
-        if ( !$user ){
+        if (!$user){
             return Response::json([
                 'error' => [
                     'message' => 'User does not exist',

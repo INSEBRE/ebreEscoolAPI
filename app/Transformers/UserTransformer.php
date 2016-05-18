@@ -12,5 +12,4 @@ class UserTransformer extends Transformer
             'email'     => $item['email'],
         ];
     }
-
 }
