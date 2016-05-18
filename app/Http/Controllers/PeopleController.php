@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\People;
 use App\Transformers\PeopleTransformer;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use Response;
 
@@ -106,7 +105,7 @@ class PeopleController extends Controller
     {
         $people = People::find($id);
 
-        if (!$people){
+        if (!$people) {
             return Response::json([
                 'error' => [
                     'message' => 'People does not exist',

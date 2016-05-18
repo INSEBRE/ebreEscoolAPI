@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-
 use App\User;
 use App\Transformers\UserTransformer;
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use Response;
 
@@ -110,7 +108,7 @@ class UserController extends Controller
         //Update a user
         $user = User::find($id);
 
-        if (!$user){
+        if (!$user) {
             return Response::json([
                 'error' => [
                     'message' => 'User does not exist',

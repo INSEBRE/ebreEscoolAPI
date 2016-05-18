@@ -17,10 +17,8 @@ Route::get('/', function () {
 
 Route::resource('user', 'UserController',
     ['only' => ['index', 'store', 'update', 'destroy', 'show']]
-
 );
 
 Route::resource('people', 'PeopleController',
     ['only' => ['index', 'store', 'update', 'destroy', 'show']]
-
 );
