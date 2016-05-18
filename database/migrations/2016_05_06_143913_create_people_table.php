@@ -26,9 +26,9 @@ class CreatePeopleTable extends Migration
             $table->string('mobile');
             $table->string('photo');
             $table->timestamps();
-
             $table->integer('user_id')->unsigned();
-            $table->integer('locality_id')->unsigned();
+
+//            $table->integer('locality_id')->unsigned();
 
         });
 
