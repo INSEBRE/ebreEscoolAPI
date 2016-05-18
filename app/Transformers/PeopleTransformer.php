@@ -21,4 +21,5 @@ class PeopleTransformer extends Transformer
             'photo'                 => $item['photo'],
         ];
     }
+
 }

@@ -2,7 +2,6 @@
 
 namespace App\Transformers;
 
-
 abstract class Transformer
 {
     public function transformCollection($items)
@@ -12,5 +11,5 @@ abstract class Transformer
         );
     }
 
-    public abstract function transform($item);
+    abstract public function transform($item);
 }

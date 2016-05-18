@@ -72,13 +72,13 @@ class UserController extends Controller
         //Obtain the user data
         $user = User::find($id);
 
-        if( !$user ) {
+        if ( !$user ) {
             return Response::json([
                 'error' => [
                     'message' => 'User does not exist',
                     'code' => 195
                 ]
-            ],404);
+            ], 404);
         }
 
         return Response::json(
@@ -110,13 +110,13 @@ class UserController extends Controller
         //Update a user
         $user = User::find($id);
 
-        if( !$user ){
+        if ( !$user ){
             return Response::json([
                 'error' => [
                     'message' => 'User does not exist',
                     'code' => 195
                 ]
-            ],404);
+            ], 404);
         }
 
         $this->saveUser($request, $user);
@@ -138,7 +138,8 @@ class UserController extends Controller
      * @param Request $request
      * @param $user
      */
-    protected function saveUser(Request $request, $user) {
+    protected function saveUser(Request $request, $user)
+    {
         $user->username = $request->username;
         $user->email = $request->email;
 

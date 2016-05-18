@@ -55,7 +55,7 @@ class UserTest extends TestCase
     public function testUsersCanBePostedAndSavedIntoDatabase()
     {
         $data = ['username' => 'mario65', 'email' => 'javier.giron@live.com'];
-        $this->post('/user',$data)->seeInDatabase('users',$data);
+        $this->post('/user', $data)->seeInDatabase('users', $data);
         $this->get('/user')->seeJsonContains($data)->seeStatusCode(200);
     }
 
@@ -68,7 +68,7 @@ class UserTest extends TestCase
     {
         $user = $this->createFakeUser();
         $data = [ 'username' => 'panqueque', 'email' => 'panqueque@iesebre.com'];
-        $this->put('/user/' . $user->id, $data)->seeInDatabase('users',$data);
+        $this->put('/user/' . $user->id, $data)->seeInDatabase('users', $data);
         $this->get('/user')->seeJsonContains($data)->seeStatusCode(200);
     }
 
@@ -81,7 +81,7 @@ class UserTest extends TestCase
     {
         $user = $this->createFakeUser();
         $data = [ 'username' => $user->username, 'email' => $user->email];
-        $this->delete('/user/' . $user->id)->notSeeInDatabase('users',$data);
+        $this->delete('/user/' . $user->id)->notSeeInDatabase('users', $data);
         $this->get('/user')->dontSeeJson($data)->seeStatusCode(200);
     }
 
@@ -111,8 +111,7 @@ class UserTest extends TestCase
      */
     private function createFakeUsers($count = 10)
     {
-        foreach (range(0,$count) as $number)
-        {
+        foreach (range(0,$count) as $number) {
             $this->createFakeUser();
         }
     }
@@ -128,4 +127,5 @@ class UserTest extends TestCase
         $user = factory(App\User::class)->create();
         return $user;
     }
+
 }

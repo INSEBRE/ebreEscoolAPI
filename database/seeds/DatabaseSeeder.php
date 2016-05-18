@@ -26,8 +26,10 @@ class DatabaseSeeder extends Seeder
         Model::reguard();
     }
 
-    public function seedUser($faker) {
-        foreach(range(1,20) as $number) {
+    public function seedUser($faker)
+    {
+        foreach(range(1, 20) as $number)
+        {
             $user = new User();
 
             $user->username = $faker->username;
@@ -38,11 +40,13 @@ class DatabaseSeeder extends Seeder
         }
     }
 
-    public function seedPeople($faker) {
+    public function seedPeople($faker)
+    {
 
         $users = User::all()->lists('id')->toArray();
 
-        foreach(range(1,20) as $number) {
+        foreach(range(1, 20) as $number)
+        {
             $people = new People();
 
             $people->givenName = $faker->firstName;
@@ -62,6 +66,4 @@ class DatabaseSeeder extends Seeder
             $people->save();
         }
     }
-
-
 }

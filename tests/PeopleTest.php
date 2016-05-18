@@ -43,8 +43,7 @@ class PeopleTest extends TestCase
      */
     private function createFakePeoples($count = 10)
     {
-        foreach (range(0,$count) as $number)
-        {
+        foreach (range(0, $count) as $number) {
             $this->createFakePeople();
         }
     }

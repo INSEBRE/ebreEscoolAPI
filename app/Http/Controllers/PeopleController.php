@@ -69,13 +69,13 @@ class PeopleController extends Controller
     {
         $people = People::find($id);
 
-        if( !$people ) {
+        if ( !$people ) {
             return Response::json([
                 'error' => [
                     'message' => 'People does not exist',
                     'code' => 195
                 ]
-            ],404);
+            ], 404);
         }
 
         return Response::json(
@@ -106,13 +106,13 @@ class PeopleController extends Controller
     {
         $people = People::find($id);
 
-        if( !$people ){
+        if ( !$people ){
             return Response::json([
                 'error' => [
                     'message' => 'People does not exist',
                     'code' => 195
                 ]
-            ],404);
+            ], 404);
         }
 
         $this->savePeople($request, $people);
@@ -133,7 +133,8 @@ class PeopleController extends Controller
      * @param Request $request
      * @param $people
      */
-    protected function savePeople(Request $request, $people) {
+    protected function savePeople(Request $request, $people)
+    {
         $people->givenName = $request->givenName;
         $people->sn1 = $request->sn1;
         $people->sn2 = $request->sn2;
