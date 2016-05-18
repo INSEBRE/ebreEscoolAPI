@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::resource('user', 'UserController',
+    ['only' => ['index', 'store', 'update', 'destroy', 'show']]
+);
+
+Route::resource('people', 'PeopleController',
+    ['only' => ['index', 'store', 'update', 'destroy', 'show']]
+);
