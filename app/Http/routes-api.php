@@ -11,10 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::group(['prefix' => 'api/v1.0'], function () {
+    Route::resource('user', 'UserController',
+        ['only' => ['index', 'store', 'update', 'destroy', 'show']]
+    );
 
-Route::get('auth/login', function() {
-    return 'No tens acces a la API';
+    Route::resource('people', 'PeopleController',
+        ['only' => ['index', 'store', 'update', 'destroy', 'show']]
+    );
 });
