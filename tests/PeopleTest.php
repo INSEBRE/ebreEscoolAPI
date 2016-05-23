@@ -1,10 +1,12 @@
 <?php
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class PeopleTest extends TestCase
 {
     use DatabaseMigrations;
+    use WithoutMiddleware;
 
     /**
      * A basic functional test example.
@@ -13,7 +15,7 @@ class PeopleTest extends TestCase
      */
     public function testPeopleUseJson()
     {
-        $this->get('/people')
+        $this->get('/api/v1.0/people')
             ->seeJson()->seeStatusCode(200);
     }
 
@@ -47,7 +49,6 @@ class PeopleTest extends TestCase
             $this->createFakePeople();
         }
     }
-
 
     /**
      * Create people
