@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'api/'], function () {
+Route::group(['prefix' => 'api/v1.0'], function () {
     Route::resource('user', 'UserController',
         ['only' => ['index', 'store', 'update', 'destroy', 'show']]
     );
