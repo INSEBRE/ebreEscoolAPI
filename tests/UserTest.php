@@ -88,6 +88,17 @@ class UserTest extends TestCase
     }
 
     /**
+     * Test users can be not found error code
+     *
+     * @return void
+     */
+    public function testUsersNotFoundErrorCode()
+    {
+        $this->createFakeUsers();
+        $this->get('/api/v1.0/user/500')->seeStatusCode(404);
+    }
+
+    /**
      * Create fake user
      *
      * @return \App\User

@@ -53,7 +53,7 @@ class PeopleController extends Controller
      */
     public function store(Request $request)
     {
-        $people = new People();
+        $people = People::create();
 
         $this->savePeople($request, $people);
     }
@@ -66,7 +66,7 @@ class PeopleController extends Controller
      */
     public function show($id)
     {
-        $people = People::find($id);
+        $people = People::findOrFail($id);
 
         if (!$people) {
             return Response::json([
@@ -103,7 +103,7 @@ class PeopleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $people = People::find($id);
+        $people = People::findOrFail($id);
 
         if (!$people) {
             return Response::json([

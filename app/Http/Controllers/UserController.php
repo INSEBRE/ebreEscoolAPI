@@ -53,8 +53,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //Creating New Users
-        $user = new User();
+        $user = User::create();
 
         $this->saveUser($request, $user);
     }
@@ -67,8 +66,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //Obtain the user data
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
         if (!$user) {
             return Response::json([
@@ -105,8 +103,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Update a user
-        $user = User::find($id);
+        $user = User::findOrFail($id);
 
         if (!$user) {
             return Response::json([
@@ -128,7 +125,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //Demove a user
         User::destroy($id);
     }
 
