@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'api/v1.0', 'middleware' => ['auth']], function () {
+Route::group(['prefix' => 'api/v1.0', 'middleware' => ['auth/login']], function () {
     Route::resource('user', 'UserController',
         ['only' => ['index', 'store', 'update', 'destroy', 'show']]
     );

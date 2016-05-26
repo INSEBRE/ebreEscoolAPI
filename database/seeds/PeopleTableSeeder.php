@@ -16,6 +16,7 @@ class PeopleTableSeeder extends Seeder
         $users = User::all()->lists('id')->toArray();
 
         $faker = Faker\Factory::create('es_ES');
+
         foreach (range(1, 20) as $number) {
             People::create([
                 'givenName'         =>  $faker->firstName,

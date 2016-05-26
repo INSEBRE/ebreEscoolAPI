@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 
@@ -15,6 +16,8 @@ class UserTest extends TestCase
      */
     public function testUsersUseJson()
     {
+        //$user = $this->createUser();
+        //$this->get('/api/v1.0/user?api_token=' . $user->api_token)->seeJson();
         $this->get('/api/v1.0/user')
             ->seeJson()->seeStatusCode(200);
     }
@@ -105,12 +108,13 @@ class UserTest extends TestCase
      */
     private function createFakeUser()
     {
-        $faker = Faker\Factory::create();
+        $faker = Faker\Factory::create('es_ES');
 
         $user = new \App\User();
         $user->username = $faker->username;
         $user->email = $faker->email;
         $user->password = $faker->password;
+        $user->api_token = $faker->password;
 
         $user->save();
 
@@ -123,7 +127,7 @@ class UserTest extends TestCase
      * @param int $count
      * @return \App\User
      */
-    private function createFakeUsers($count = 10)
+    private function createFakeUsers($count = 20)
     {
         foreach (range(0, $count) as $number) {
             $this->createFakeUser();
@@ -138,6 +142,7 @@ class UserTest extends TestCase
     public function createUser()
     {
         $user = factory(App\User::class)->create();
+
         return $user;
     }
 }
