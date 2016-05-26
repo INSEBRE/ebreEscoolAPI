@@ -24,17 +24,14 @@ class CreatePeopleTable extends Migration
             $table->string('homePostalAddress');
             $table->string('locality_name');
             $table->string('mobile');
-            $table->string('photo');
+            $table->string('avatar');
             $table->timestamps();
             $table->integer('user_id')->unsigned();
-
-//            $table->integer('locality_id')->unsigned();
 
         });
 
         Schema::table('people', function ($table) {
             $table->foreign('user_id')->references('id')->on('users');
-            //$table->foreign('locality_id')->references('id')->on('locality');
         });
     }
 
