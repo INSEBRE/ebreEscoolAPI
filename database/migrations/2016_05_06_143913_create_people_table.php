@@ -27,7 +27,6 @@ class CreatePeopleTable extends Migration
             $table->string('avatar');
             $table->timestamps();
             $table->integer('user_id')->unsigned();
-
         });
 
         Schema::table('people', function ($table) {

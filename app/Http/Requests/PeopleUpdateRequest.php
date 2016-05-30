@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-
 class PeopleUpdateRequest extends Request
 {
     /**
@@ -26,5 +25,4 @@ class PeopleUpdateRequest extends Request
     {
         return true;
     }
-
 }
