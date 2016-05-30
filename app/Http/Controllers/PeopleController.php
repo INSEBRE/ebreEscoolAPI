@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PeopleStoreRequest;
+use App\Http\Requests\PeopleUpdateRequest;
 use App\People;
 use App\Transformers\PeopleTransformer;
 use Illuminate\Http\Request;
@@ -51,11 +53,9 @@ class PeopleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PeopleStoreRequest $request)
     {
-        $people = People::create();
-
-        $this->savePeople($request, $people);
+        People::create();
     }
 
     /**
@@ -101,7 +101,7 @@ class PeopleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PeopleUpdateRequest $request, $id)
     {
         $people = People::findOrFail($id);
 
@@ -114,26 +114,6 @@ class PeopleController extends Controller
             ], 404);
         }
 
-        $this->savePeople($request, $people);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        People::destroy($id);
-    }
-
-    /**
-     * @param Request $request
-     * @param $people
-     */
-    protected function savePeople(Request $request, $people)
-    {
         $people->givenName = $request->givenName;
         $people->sn1 = $request->sn1;
         $people->sn2 = $request->sn2;
@@ -147,5 +127,16 @@ class PeopleController extends Controller
         $people->photo = $request->photo;
 
         $people->save();
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        People::destroy($id);
     }
 }

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use App\Transformers\UserTransformer;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Request;
 use App\Http\Requests;
 use Response;
 
@@ -52,14 +52,9 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-
         User::create();
-
-//        $user = User::create();
-//
-//        $this->saveUser($request, $user);
     }
 
     /**
@@ -105,7 +100,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
         $user = User::findOrFail($id);
 
