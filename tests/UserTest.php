@@ -129,7 +129,7 @@ class UserTest extends TestCase
      */
     private function createFakeUsers($count = 20)
     {
-        foreach (range(0, $count) as $number) {
+        foreach (range(1, $count) as $number) {
             $this->createFakeUser();
         }
     }

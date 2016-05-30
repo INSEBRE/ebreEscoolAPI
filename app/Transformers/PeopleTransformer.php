@@ -18,7 +18,7 @@ class PeopleTransformer extends Transformer
             'homePostalAddress'     => $item['homePostalAddress'],
             'locality_name'         => $item['locality_name'],
             'mobile'                => $item['mobile'],
-            'photo'                 => $item['photo'],
+            'photo'                 => $item['avatar'],
         ];
     }
 }

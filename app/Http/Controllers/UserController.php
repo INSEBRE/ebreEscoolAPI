@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Transformers\UserTransformer;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Response;
@@ -53,9 +54,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create();
 
-        $this->saveUser($request, $user);
+        User::create();
+
+//        $user = User::create();
+//
+//        $this->saveUser($request, $user);
     }
 
     /**
@@ -114,7 +118,10 @@ class UserController extends Controller
             ], 404);
         }
 
-        $this->saveUser($request, $user);
+        $user->username = $request->username;
+        $user->email = $request->email;
+
+        $user->save();
     }
 
     /**
@@ -126,17 +133,5 @@ class UserController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
-    }
-
-    /**
-     * @param Request $request
-     * @param $user
-     */
-    protected function saveUser(Request $request, $user)
-    {
-        $user->username = $request->username;
-        $user->email = $request->email;
-
-        $user->save();
     }
 }
