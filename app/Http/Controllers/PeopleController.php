@@ -124,7 +124,7 @@ class PeopleController extends Controller
         $people->homePostalAddress = $request->homePostalAddress;
         $people->locality_name = $request->locality_name;
         $people->mobile = $request->mobile;
-        $people->photo = $request->photo;
+        $people->avatar = $request->avatar;
 
         $people->save();
     }
