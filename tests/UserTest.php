@@ -16,10 +16,10 @@ class UserTest extends TestCase
      */
     public function testUsersUseJson()
     {
-        //$user = $this->createUser();
-        //$this->get('/api/v1.0/user?api_token=' . $user->api_token)->seeJson();
-        $this->get('/api/v1.0/user')
-            ->seeJson()->seeStatusCode(200);
+        $users = $this->createUser();
+
+        $this->get('/api/v1.0/user?api_token=' . $users
+                ->api_token)->seeJson();
     }
 
     /**
@@ -29,8 +29,11 @@ class UserTest extends TestCase
      */
     public function testUsersInDatabaseAreListedByAPI()
     {
+        $users = $this->createUser();
+
         $this->createFakeUsers();
-        $this->get('/api/v1.0/user')
+        $this->actingAs($users)
+            ->get('/api/v1.0/user')
             ->seeJsonStructure([
                 '*' => [
                     'username',
@@ -46,8 +49,10 @@ class UserTest extends TestCase
      */
     public function testUsersInDatabaseAreShownByAPI()
     {
+        $users = $this->createUser();
+
         $user = $this->createFakeUser();
-        $this->get('/api/v1.0/user/' . $user->id)
+        $this->actingAs($users)->get('/api/v1.0/user/' . $user->id)
             ->seeJsonContains(['username' => $user->username, 'email' => $user->email])
             ->seeStatusCode(200);
     }
@@ -59,9 +64,11 @@ class UserTest extends TestCase
 //     */
 //    public function testUsersCanBePostedAndSavedIntoDatabase()
 //    {
+//        $users = $this->createUser();
+//
 //        $data = ['username' => 'marta17', 'email' => 'rocio44@latinmail.com'];
-//        $this->post('/api/v1.0/user', $data)->seeInDatabase('users', $data);
-//        $this->get('/api/v1.0/user')->seeJsonContains($data)->seeStatusCode(200);
+//        $this->actingAs($users)->post('/api/v1.0/user', $data)->seeInDatabase('users', $data);
+//        $this->actingAs($users)->get('/api/v1.0/user')->seeJsonContains($data)->seeStatusCode(200);
 //    }
 
     /**
@@ -71,10 +78,12 @@ class UserTest extends TestCase
      */
     public function testUsersCanBeUpdatedAndSeeChangesInDatabase()
     {
+        $users = $this->createUser();
+
         $user = $this->createFakeUser();
         $data = ['username' => 'panqueque', 'email' => 'panqueque@iesebre.com'];
-        $this->put('/api/v1.0/user/' . $user->id, $data)->seeInDatabase('users', $data);
-        $this->get('/api/v1.0/user')->seeJsonContains($data)->seeStatusCode(200);
+        $this->actingAs($users)->put('/api/v1.0/user/' . $user->id, $data)->seeInDatabase('users', $data);
+        $this->actingAs($users)->get('/api/v1.0/user')->seeJsonContains($data)->seeStatusCode(200);
     }
 
     /**
@@ -84,10 +93,12 @@ class UserTest extends TestCase
      */
     public function testUsersCanBeDeletedAndNotSeenOnDatabase()
     {
+        $users = $this->createUser();
+
         $user = $this->createFakeUser();
         $data = ['username' => $user->username, 'email' => $user->email];
-        $this->delete('/api/v1.0/user/' . $user->id)->notSeeInDatabase('users', $data);
-        $this->get('/api/v1.0/user')->dontSeeJson($data)->seeStatusCode(200);
+        $this->actingAs($users)->delete('/api/v1.0/user/' . $user->id)->notSeeInDatabase('users', $data);
+        $this->actingAs($users)->get('/api/v1.0/user')->dontSeeJson($data)->seeStatusCode(200);
     }
 
     /**
@@ -97,8 +108,22 @@ class UserTest extends TestCase
      */
     public function testUsersNotFoundErrorCode()
     {
+        $users = $this->createUser();
+
         $this->createFakeUsers();
-        $this->get('/api/v1.0/user/500')->seeStatusCode(404);
+        $this->actingAs($users)->get('/api/v1.0/user/500')->seeStatusCode(404);
+    }
+
+    /**
+     * Test tags when not auth redirect to login and see message
+     *
+     * @return void
+     */
+    public function testTagsReturnLoginPageWhenNotAuth()
+    {
+        $this->visit('/login')
+            ->seePageIs('/login')
+            ->see('You do not have access to the API');
     }
 
     /**

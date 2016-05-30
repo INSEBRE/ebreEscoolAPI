@@ -11,7 +11,7 @@
 |
 */
 
-Route::group(['prefix' => 'api/v1.0', 'middleware' => ['auth/login']], function () {
+Route::group(['prefix' => 'api/v1.0', 'middleware' => ['login']], function () {
     Route::get('user/{id}/user', 'UserController@index');
 
     Route::resource('user', 'UserController',

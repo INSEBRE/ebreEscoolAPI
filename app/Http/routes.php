@@ -15,6 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('auth/login', function () {
+Route::get('login', function () {
     return 'You do not have access to the API';
 });
