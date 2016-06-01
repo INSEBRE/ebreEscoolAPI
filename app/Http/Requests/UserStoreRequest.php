@@ -13,7 +13,9 @@ class UserStoreRequest extends Request
     {
         return [
             'username' => 'required|max:255',
-            'email' => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
+            'api_token' => 'required'
         ];
     }
 

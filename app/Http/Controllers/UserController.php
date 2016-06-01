@@ -54,7 +54,7 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        User::create();
+        User::create($request->only('username','email'));
     }
 
     /**

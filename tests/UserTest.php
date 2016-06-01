@@ -66,12 +66,14 @@ class UserTest extends TestCase
 //    {
 //        $users = $this->createUser();
 //
-//        $data = ['username' => 'marta17', 'email' => 'rocio44@latinmail.com'];
-//        $this->actingAs($users)->post('/api/v1.0/user', $data)->seeInDatabase('users', $data);
-//        $this->actingAs($users)->get('/api/v1.0/user')->seeJsonContains($data)->seeStatusCode(200);
+//        $data = ['username' => 'panqueque','email' => 'gato@panqueque.com'];
+//
+//        $this->post('/api/v1.0/user', $data)->seeInDatabase('users', $data);
+//        $this->get('/api/v1.0/user')->seeJsonContains($data)->seeStatusCode(200);
 //    }
 
     /**
+     *
      * Test users can be update and see changes on database
      *
      * @return void
