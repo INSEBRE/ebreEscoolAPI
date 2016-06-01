@@ -60,7 +60,7 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        User::create($request->only('username','email'));
+        User::create($request->only('username', 'email'));
     }
 
     /**
