@@ -22,8 +22,6 @@ class UserController extends Controller
      */
     public function __construct(UserTransformer $userTransformer, User $user)
     {
-        parent::__construct();
-
         $this->userTransformer = $userTransformer;
         $this->user = $user;
     }
