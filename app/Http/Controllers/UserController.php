@@ -12,14 +12,20 @@ use Response;
 class UserController extends Controller
 {
     protected $userTransformer;
+    private $user;
 
     /**
      * UserController constructor.
-     * @param $userTransformer
+     *
+     * @param User              $user
+     * @param UserTransformer   $userTransformer
      */
-    public function __construct(UserTransformer $userTransformer)
+    public function __construct(UserTransformer $userTransformer, User $user)
     {
+        parent::__construct();
+
         $this->userTransformer = $userTransformer;
+        $this->user = $user;
     }
 
     /**
