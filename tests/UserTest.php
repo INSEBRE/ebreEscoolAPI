@@ -57,20 +57,25 @@ class UserTest extends TestCase
             ->seeStatusCode(200);
     }
 
-//    /**
-//     * Test users can be posted and saved to database
-//     *
-//     * @return void
-//     */
-//    public function testUsersCanBePostedAndSavedIntoDatabase()
-//    {
-//        $users = $this->createUser();
+    /**
+     * Test users can be posted and saved to database
+     *
+     * @return void
+     */
+    public function testUsersCanBePostedAndSavedIntoDatabase()
+    {
+        $users = factory(User::class)->create();
+
+//        $data = [
+//            'username' => 'panqueque',
+//            'email' => 'gato@panqueque.com',
+//            'password' => '$2y$10$jFjBcEWl8c48DtYoh.WL/uwuGtWlBkFNWVWzkZoZnJPINN2YufXJq',
+//            'api_token' => '25364a6cac63648481229e799a84ff81b1a65f98',
+//        ];
 //
-//        $data = ['username' => 'panqueque','email' => 'gato@panqueque.com'];
-//
-//        $this->post('/api/v1.0/user', $data)->seeInDatabase('users', $data);
-//        $this->get('/api/v1.0/user')->seeJsonContains($data)->seeStatusCode(200);
-//    }
+//        $this->actingAs($users)->post('/api/v1.0/user', $data)->seeInDatabase('users', $data);
+//        $this->actingAs($users)->get('/api/v1.0/user')->seeJsonContains($data)->seeStatusCode(200);
+    }
 
     /**
      *
